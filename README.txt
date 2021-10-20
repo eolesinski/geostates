@@ -1,1 +1,1 @@
-This is a test documnet for a readme file.
+This is a test document for a readme file.
