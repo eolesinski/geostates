@@ -5,7 +5,8 @@ import pandas as pd
 import math
 
 
-def usa_plot(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
+
+def plot_states(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
     """Plot a choropleth map of the United States.
 
     Parameters
@@ -33,7 +34,7 @@ def usa_plot(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
        values are rounded to four decimal places).
 
     linestyle : string, default 'dashed'
-       Linestyle to place around the inset plots. Options are
+       Line style to place around the inset plots. Options are
        'solid', 'dashed', and 'none'.
 
     cmap : str, default=None
@@ -158,16 +159,17 @@ def usa_plot(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
         state_name : the name of the state we would like to get the y centroid value of
 
         '''
-  
+
         state = df.loc[state_name]
         centroid_y = round(state['geometry'].centroid.y, 4)
         return centroid_y
 
     # ---------------------------
 
-    # for loop to add state lable annotaitons to the continental plot
+    # for loop to add state label annotations to the continental plot
     rows = df.index.drop(['AK', 'HI', 'PR', 'GU', 'RI', 'DC', 'DE', 'FL', 'MI', 'LA'])
 
+    # for loop for labeling states where centroid values provide good locations for annotations
     for row in rows:
         test = df.loc[row]
         test_centroid_x = round(test['geometry'].centroid.x, 4)
@@ -176,17 +178,21 @@ def usa_plot(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
         continental_states_ax.annotate(test.name, xy=(test['geometry'].centroid.x, test['geometry'].centroid.y),
                                        color='white', ha='center', va='center')
 
-    # create the lable for Rhode Island
+    # state labels for New England states
+
+    # create the label for Rhode Island
     continental_states_ax.annotate('RI', xy=(centroid_x('RI'), centroid_y('RI')), xycoords='data',
                                    xytext=(-69, 39), textcoords='data', arrowprops=dict(arrowstyle='-'))
 
-    # create the label for Deleware
+    # create the label for Delaware
     continental_states_ax.annotate('DE', xy=(centroid_x('DE'), centroid_y('DE')), xycoords='data',
                                    xytext=(-72, 37), textcoords='data', arrowprops=dict(arrowstyle='-', ))
 
     # create the label for DC
     continental_states_ax.annotate('DC', xy=(centroid_x('DC'), centroid_y('DC')), xycoords='data',
                                    xytext=(-74, 35), textcoords='data', arrowprops=dict(arrowstyle='-'))
+
+    # state labels for inset plots
 
     # state label annotation for Alaska inset plots
     ak = df.loc['AK']
@@ -196,13 +202,34 @@ def usa_plot(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
     hi = df.loc['HI']
     hawaii_ax.annotate(hi.name, xy=(centroid_x('HI'), centroid_y('HI')), color='black', ha='center', va='center')
 
-    # state label annotation for Puerto Rick inset plot
+    # state label annotation for Puerto Rico inset plot
     pr = df.loc['PR']
     puerto_rico_ax.annotate(pr.name, xy=(centroid_x('PR'), centroid_y('PR')), color='white', ha='center', va='center')
 
     # state label annotation for Guam inset plot
     gu = df.loc['GU']
     guam_ax.annotate(gu.name, xy=(centroid_x('GU'), centroid_y('GU')), color='white', ha='center', va='center')
+
+
+    # custom state labels for states in which using polygon centroids does not provide a good center for labels
+
+    # state label annotation for Florida
+    fl = df.loc['FL']
+    continental_states_ax.annotate(fl.name, xy=(centroid_x('FL') + .75, centroid_y('FL')), color='white',
+                                   ha='center', va='center')
+
+    # state label annotation for Michigan
+    mi = df.loc['MI']
+    continental_states_ax.annotate(mi.name, xy=(centroid_x('MI') + .58, centroid_y('MI') - .85), color='white',
+                                   ha='center', va='center')
+
+    # state label annotation for Louisiana
+    la = df.loc['LA']
+    continental_states_ax.annotate(la.name, xy=(centroid_x('LA') - .5, centroid_y('LA')), color='white',
+                                   ha='center', va='center')
+
+
+
 
     # ----------------------PLOT THE FIGURE ONCE ALL THE PARAMETER VALUES ARE SPECIFIED----------------
 
