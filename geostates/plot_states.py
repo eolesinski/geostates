@@ -5,8 +5,7 @@ import pandas as pd
 import math
 
 
-
-def plot_states(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
+def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle='solid', cmap='copper_r', **kwargs):
     """Plot a choropleth map of the United States.
 
     Parameters
@@ -164,19 +163,40 @@ def plot_states(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
         centroid_y = round(state['geometry'].centroid.y, 4)
         return centroid_y
 
-    # ---------------------------
+    # function for extracting value from dataframe and converting it into a string
+    def get_column(df, column):
+        value = df.loc[column]
+        value_s = str(value)
+        return value_s
+
+    # ----------------------------
 
     # for loop to add state label annotations to the continental plot
     rows = df.index.drop(['AK', 'HI', 'PR', 'GU', 'RI', 'DC', 'DE', 'FL', 'MI', 'LA'])
 
     # for loop for labeling states where centroid values provide good locations for annotations
-    for row in rows:
-        test = df.loc[row]
-        test_centroid_x = round(test['geometry'].centroid.x, 4)
-        test_centroid_y = round(test['geometry'].centroid.y, 4)
 
-        continental_states_ax.annotate(test.name, xy=(test['geometry'].centroid.x, test['geometry'].centroid.y),
-                                       color='white', ha='center', va='center')
+    if labels == 'postal':
+
+        for row in rows:
+            test = df.loc[row]
+            # test_centroid_x = round(test['geometry'].centroid.x, 4)
+            # test_centroid_y = round(test['geometry'].centroid.y, 4)
+
+            continental_states_ax.annotate(test.name, xy=(centroid_x(row), centroid_y(row)), color='white',
+                                           ha='center', va='center')
+
+    elif labels == 'both':
+
+        for row in rows:
+            test = df.loc[row]
+
+            continental_states_ax.annotate(test.name + '\n' + get_column(test, column), xy=(centroid_x(row),
+                                                                                            centroid_y(row)),
+                                           color='white', ha='center', va='center')
+
+        # continental_states_ax.annotate(test.name, xy=(test['geometry'].centroid.x, test['geometry'].centroid.y),
+        # color='white', ha='center', va='center')
 
     # state labels for New England states
 
@@ -196,7 +216,10 @@ def plot_states(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
 
     # state label annotation for Alaska inset plots
     ak = df.loc['AK']
-    alaska_ax.annotate(ak.name, xy=(centroid_x('AK'), centroid_y('AK')), color='white', ha='center', va='center')
+    ak_m = states_merged_2.loc['AK']
+    # alaska_ax.annotate(ak.name, xy=(centroid_x('AK'), centroid_y('AK')), ha='center', va='center', color='red')
+    alaska_ax.annotate(ak.name + '\n' + get_column(ak_m, 'admits'), xy=(centroid_x('AK'), centroid_y('AK')),
+                       color='white', ha='center', va='center')
 
     # state label annotation for Hawaii inset plot
     hi = df.loc['HI']
@@ -210,12 +233,13 @@ def plot_states(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
     gu = df.loc['GU']
     guam_ax.annotate(gu.name, xy=(centroid_x('GU'), centroid_y('GU')), color='white', ha='center', va='center')
 
-
     # custom state labels for states in which using polygon centroids does not provide a good center for labels
 
     # state label annotation for Florida
     fl = df.loc['FL']
-    continental_states_ax.annotate(fl.name, xy=(centroid_x('FL') + .75, centroid_y('FL')), color='white',
+    fl_m = states_merged_2.loc['FL']
+    continental_states_ax.annotate(fl.name + '\n' + get_column(fl_m, 'admits'),
+                                   xy=(centroid_x('FL') + .75, centroid_y('FL')), color='white',
                                    ha='center', va='center')
 
     # state label annotation for Michigan
@@ -228,14 +252,11 @@ def plot_states(linestyle='solid', cmap=None, extra_regions=False, **kwargs):
     continental_states_ax.annotate(la.name, xy=(centroid_x('LA') - .5, centroid_y('LA')), color='white',
                                    ha='center', va='center')
 
-
-
-
     # ----------------------PLOT THE FIGURE ONCE ALL THE PARAMETER VALUES ARE SPECIFIED----------------
 
     # plot the continental United States
     vmin, vmax = states_merged_2['ALAND'].agg(['min', 'max'])
-    states_merged_2.drop(index=['AK', 'HI', 'PR']).plot(column='admits', cmap='copper_r', ax=continental_states_ax,
+    states_merged_2.drop(index=['AK', 'HI', 'PR']).plot(column='admits', cmap=cmap, ax=continental_states_ax,
                                                         edgecolor='white')
 
     # plot the inset plots
