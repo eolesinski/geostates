@@ -3,6 +3,7 @@ import numpy as np
 import geopandas as gpd
 import pandas as pd
 import math
+from matplotlib.lines import Line2D
 
 
 def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle='solid', cmap='copper_r', **kwargs):
@@ -214,24 +215,19 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
         # custom state labels for states in which using polygon centroids does not provide a good center for labels
 
         # state label annotation for Florida
-        fl = df.loc['FL']
-        continental_states_ax.annotate(fl.name + '\n' + get_value(fl, 'admits'), xy=(centroid_x('FL') + .75,
-                                                                                     centroid_y('FL')), color='white',
-                                       ha='center', va='center')
+        continental_states_ax.annotate('FL', xy=(centroid_x('FL') + .75,
+                                                 centroid_y('FL')), color='white', ha='center', va='center')
 
         # state label annotation for Michigan
-        mi = df.loc['MI']
-        continental_states_ax.annotate(mi.name, xy=(centroid_x('MI') + .58, centroid_y('MI') - .85), color='white',
+        continental_states_ax.annotate('MI', xy=(centroid_x('MI') + .58, centroid_y('MI') - .85), color='white',
                                        ha='center', va='center')
 
         # state label annotation for Louisiana
-        la = df.loc['LA']
-        continental_states_ax.annotate(la.name, xy=(centroid_x('LA') - .5, centroid_y('LA')), color='white',
+        continental_states_ax.annotate('LA', xy=(centroid_x('LA') - .5, centroid_y('LA')), color='white',
                                        ha='center', va='center')
 
         # state label annotation for California
-        ca = df.loc['CA']
-        continental_states_ax.annotate(ca.name, xy=(centroid_x('CA') - .4, centroid_y('CA')), color='white',
+        continental_states_ax.annotate('CA', xy=(centroid_x('CA') - .4, centroid_y('CA')), color='white',
                                        ha='center', va='center')
 
         # state labels for New England States
@@ -246,8 +242,25 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
             test = df.loc[row]
 
             continental_states_ax.annotate(test.name + '\n' + get_value(test, column), xy=(centroid_x(row),
-                                                                                           centroid_y(row)),
-                                           color='white', ha='center', va='center')
+                                           centroid_y(row)), color='white', ha='center', va='center')
+
+        # custom state labels for states in which using polygon centroids does not provide a good center for labels
+
+        # state label annotation for Florida
+        continental_states_ax.annotate('FL' + '\n' + get_value(state_df('FL'), column), xy=(centroid_x('FL') + .75,
+                                       centroid_y('FL')), color='white', ha='center', va='center')
+
+        # state label annotation for Michigan
+        continental_states_ax.annotate('MI' + '\n' + get_value(state_df('MI'), column), xy=(centroid_x('MI') + .58,
+                                       centroid_y('MI') - .85), color='white', ha='center', va='center')
+
+        # state label annotation for Louisiana
+        continental_states_ax.annotate('LA' + '\n' + get_value(state_df('LA'), column), xy=(centroid_x('LA') - .5,
+                                       centroid_y('LA')), color='white', ha='center', va='center')
+
+        # state label annotation for California
+        continental_states_ax.annotate('CA' + '\n' + get_value(state_df('CA'), column), xy=(centroid_x('CA') - .4,
+                                       centroid_y('CA')), color='white', ha='center', va='center')
 
     else:
 
@@ -323,7 +336,19 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
     # calulate the min and max value for the plot
     vmin, vmax = df[column].agg(['min', 'max'])
 
-    # continental_states_ax.legend(handles=handles, loc='lower right')
+    # calculate the boundaries for the range of values plotted
+    bounds = np.linspace(vmin, vmax, cmap.N + 1)
+
+    # create a colorbar
+
+    # create a normal legend
+
+    # create the handels to map the range of values to a discrete colormap
+    handles = [Line2D([], [], color=cmap(i / (cmap.N - 1)), marker='s', ls='',
+                      label=f'{bounds[i]:.0f} - {bounds[i + 1]:.0f}') for i in range(cmap.N)]
+
+    # add a legend object to the plot
+    continental_states_ax.legend(handles=handles, loc='lower right', borderpad=.75, title=str(column) + ' by State')
 
     # ----------------------PLOT THE FIGURE ONCE ALL THE PARAMETER VALUES ARE SPECIFIED----------------
 
