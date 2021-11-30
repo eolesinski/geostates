@@ -270,7 +270,7 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
         # create the label for Rhode Island
         continental_states_ax.annotate('RI', ha='center', xy=(centroid_x('RI'), centroid_y('RI')), xycoords='data',
                                        xytext=(-70, 40.5), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                              connectionstyle="arc, angleA=0, angleB=0, armA=-25, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=-25, armB=0, rad=0"))
 
         # create the label for New Jersey
         continental_states_ax.annotate('NJ', ha='center', xy=(centroid_x('NJ'), centroid_y('NJ')), xycoords='data',
@@ -279,17 +279,17 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
         # create the label for Delaware
         continental_states_ax.annotate('DE', ha='center', xy=(centroid_x('DE'), centroid_y('DE')), xycoords='data',
                                        xytext=(-73.50, 38.25), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                                  connectionstyle="arc, angleA=0, angleB=0, armA=0, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=0, armB=0, rad=0"))
 
         # create the label for DC
         continental_states_ax.annotate('DC', ha='center', xy=(centroid_x('DC'), centroid_y('DC')), xycoords='data',
                                        xytext=(-74.2, 36.5), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                                connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
 
         # create the label for Maryland
         continental_states_ax.annotate('MD', xy=(centroid_x('MD'), centroid_y('MD')), xycoords='data',
                                        xytext=(-74.4, 37.35), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                                 connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
 
         # state labels for extra region inset plots
         if extra_regions == True:
@@ -353,19 +353,19 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
         continental_states_ax.annotate('RI' + '\n' + get_value(state_df('RI'), column), ha='center',
                                        xy=(centroid_x('RI'), centroid_y('RI')), xycoords='data',
                                        xytext=(-69.25, 40.25), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                                  connectionstyle="arc, angleA=0, angleB=0, armA=-32, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=-32, armB=0, rad=0"))
 
         # create the label for Massachusetts
         continental_states_ax.annotate('MA' + '\n' + get_value(state_df('MA'), column), ha='center',
                                        xy=(centroid_x('MA'), centroid_y('MA')), xycoords='data',
                                        xytext=(-69, 42.5), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                              connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=30, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=30, rad=0"))
 
         # create the label for Connecticut
         continental_states_ax.annotate('CT' + '\n' + get_value(state_df('CT'), column), ha='center',
                                        xy=(centroid_x('CT'), centroid_y('CT')), xycoords='data',
                                        xytext=(-70.50, 39.25), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                                  connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
 
         # create the label for New Jersey
         continental_states_ax.annotate('NJ' + '\n' + get_value(state_df('NJ'), column), ha='center',
@@ -376,20 +376,20 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
         continental_states_ax.annotate('DE' + '\n' + get_value(state_df('DE'), column), ha='center',
                                        xy=(centroid_x('DE'), centroid_y('DE')), xycoords='data',
                                        xytext=(-73.50, 38), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                               connectionstyle="arc, angleA=0, angleB=0, armA=0, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=0, armB=0, rad=0"))
 
         # create the label for DC
         continental_states_ax.annotate('DC' + '\n' + get_value(state_df('DC'), column), ha='center',
                                        xy=(centroid_x('DC'), centroid_y('DC')), xycoords='data',
                                        xytext=(-74, 36), textcoords='data', arrowprops=dict(arrowstyle='-',
-                                                                                            connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
 
         # create the label for Maryland
         continental_states_ax.annotate('MD' + '\n' + get_value(state_df('MD'), column), xy=(centroid_x('MD'),
                                                                                             centroid_y('MD')),
                                        xycoords='data', xytext=(-73, 37), textcoords='data',
                                        arrowprops=dict(arrowstyle='-',
-                                                       connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
+                                       connectionstyle="arc, angleA=0, angleB=0, armA=-30, armB=0, rad=0"))
 
         # state labels for extra region inset plots
         if extra_regions == True:
