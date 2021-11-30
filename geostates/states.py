@@ -1,3 +1,6 @@
+import geopandas as gpd
+from os.path import dirname, join
+
 def get_state(state):
     '''Extract an individual state from the DataFrame.
 
@@ -14,7 +17,9 @@ def get_state(state):
     '''
 
     # load in the counties shape file
-    df = load_counties()
+
+    module_path = dirname(__file__)
+    df = gpd.read_file(join(module_path, 'cb_2018_us_county_500k.shp'))
 
     # create a dictionary to map the 'STATEFP' values to each state
     state_dic = {'AL': '01', 'AK': '02', 'AZ': '04', 'AR': '05', 'CA': '06', 'CO': '08', 'CT': '09', 'DE': '10',
