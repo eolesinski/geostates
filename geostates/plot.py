@@ -13,7 +13,7 @@ from matplotlib.cm import ScalarMappable
 
 
 def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle='solid', cmap='copper_r',
-                legend=None, bins=10, **kwargs):
+                legend=None, bins=10):
     """Plot a choropleth map of the United States.
 
     Parameters
