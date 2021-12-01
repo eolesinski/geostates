@@ -10,7 +10,7 @@ def load_states():
         DataFrame containing the shapefile for the United States.
     """
     module_path = dirname(__file__)
-    df = gpd.read_file(join(module_path, 'cb_2018_us_state_500k.shp'))
+    df = gpd.read_file(join(module_path, 'cb_2018_us_state_500k/cb_2018_us_state_500k.shp'))
     df = df.drop([37, 38, 45])
     return df
 
@@ -23,5 +23,5 @@ def load_counties():
         DataFrame containing the shapefile for the United States.
     """
     module_path = dirname(__file__)
-    df = gpd.read_file(join(module_path, 'cb_2018_us_county_500k.shp'))
+    df = gpd.read_file(join(module_path, 'cb_2018_us_county_500k/cb_2018_us_county_500k.shp'))
     return df
