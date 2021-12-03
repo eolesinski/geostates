@@ -19,16 +19,16 @@ Dev roadmap
 The current version of geostates only allows for plotting choropleth maps of the United States using a very specific
 set of shapefiles. In the future, the goal is to add:
 
-- Ability to plot United States maps with county data.
+- Ability to plot United States maps with county-level data.
 - Add support for Congressional Districts, Metropolitan Statistical Areas, and Zip Code Areas to individual state
  plots.
 - Add support for plotting categorical data for United States maps.
-- Add features for plotting political science maps (ie. Electoral College maps etc.).
+- Add features for plotting political science maps (ie. Electoral College maps, etc.).
 
 How to contribute
 -----------------
 
-You can contribute to the geostates package by installing it and giving it a try. Also, you can file issues on the 
+You can contribute to the geostates package by installing it and giving it a try. You can also file issues on the 
 issue tracker or submit a pull request if you would like to make any improvements.
 
 Acknowledgements
