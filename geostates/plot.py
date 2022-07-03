@@ -5,7 +5,7 @@ import geopandas as gpd
 import pandas as pd
 import math
 
-from utils import discrete_cmap
+from .utils import discrete_cmap
 
 from matplotlib.lines import Line2D
 from matplotlib.colors import ListedColormap, LinearSegmentedColormap
