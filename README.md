@@ -4,7 +4,7 @@ geostates
 [![pypi](https://img.shields.io/pypi/v/geostates.svg)](https://pypi.org/project/geostates)
 [![downloads](https://static.pepy.tech/badge/geostates)](https://pepy.tech/project/geostates)
 [![License:MIT](https://img.shields.io/badge/License-MIT-lightgray.svg?style=flt-square)](https://opensource.org/licenses/MIT)
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.6812430.svg)](https://doi.org/10.5281/zenodo.6812430)
 
 Geostates is a Python package for quickly plotting choropleth maps of the United States.
 
