@@ -228,7 +228,7 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
         # define the states to label
         rows = df.index.drop(['AK', 'HI', 'PR', 'GU', 'RI', 'DC', 'DE', 'FL', 'MI', 'LA', 'CA', 'MD', 'NJ', 'MA'])
 
-        # create a for loop to label all of the statses in the list rows
+        # create a for loop to label all of the states in the list rows
         for row in rows:
             test = df.loc[row]
 
@@ -462,6 +462,7 @@ def plot_states(df, column=None, extra_regions=False, labels='postal', linestyle
     df.loc[['HI']].plot(column=column, cmap=cmap, ax=hawaii_ax)
 
     # return the plot figure
+    plt.show()
     return continental_states_ax
 
 
