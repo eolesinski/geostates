@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>College Admissions Data &mdash; geostates 0.1.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/sg_gallery.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Dev Roadmap" href="../dev.html" />
+    <link rel="prev" title="Using the geostates package" href="Cattle%20Data.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> geostates
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dependencies.html">Dependencies</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Examples</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../examples.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Cattle%20Data.html">Using the geostates package</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">College Admissions Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Using-the-geostates-package">Using the geostates package</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Admissions-analysis">Admissions analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Loading-in-the-data">Loading in the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Analyzing-the-data">Analyzing the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Visualize-the-data-using-geostates">Visualize the data using geostates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Merging-the-data">Merging the data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Plotting-the-data">Plotting the data</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Help and Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/eolesinski/geostates">GitHub Repo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev.html">Dev Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contribute.html">Contribution Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing Geostates</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">geostates</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../examples.html">Examples</a> &raquo;</li>
+      <li>College Admissions Data</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/examples/Admissions Data.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 4.5ex;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt .copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+.jp-RenderedHTMLCommon table,
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+.jp-RenderedHTMLCommon thead,
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+.jp-RenderedHTMLCommon tr,
+.jp-RenderedHTMLCommon th,
+.jp-RenderedHTMLCommon td,
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+.jp-RenderedHTMLCommon th,
+div.rendered_html th {
+  font-weight: bold;
+}
+.jp-RenderedHTMLCommon tbody tr:nth-child(odd),
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+.jp-RenderedHTMLCommon tbody tr:hover,
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="College-Admissions-Data">
+<h1>College Admissions Data<a class="headerlink" href="#College-Admissions-Data" title="Permalink to this heading"></a></h1>
+<section id="Using-the-geostates-package">
+<h2>Using the geostates package<a class="headerlink" href="#Using-the-geostates-package" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">geostates</span></code> can be used to create choropleth plots of the United States or individual states. It is easy to use so we will start out with an example to show you some of the ins and outs of the package.</p>
+</section>
+<section id="Admissions-analysis">
+<h2>Admissions analysis<a class="headerlink" href="#Admissions-analysis" title="Permalink to this heading"></a></h2>
+<p><strong>Goal:</strong> To illustrate the power of the package, we will start out by creating a plot that shows how the number of Princeton University acceptances varies by state in the United States.</p>
+<p>We will start by importing the <code class="docutils literal notranslate"><span class="pre">pandas</span></code> and <code class="docutils literal notranslate"><span class="pre">geostates</span></code> packages.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Loading-in-the-data">
+<h2>Loading in the data<a class="headerlink" href="#Loading-in-the-data" title="Permalink to this heading"></a></h2>
+<p>For this example, we use admissions data on the <em>Princeton University Class of 2025</em> from the <a class="reference external" href="https://admission.princeton.edu/apply/admission-statistics">Princeton University Undergraduate Admissions Department</a>. The CSV includes the total number of admits in the United States as of 30 August 2021 broken down by each geography (state).</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[16]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># read in the data</span>
+<span class="n">admissions_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;Desktop/admissions_data_22.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;state&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># take a look at what the CSV file looks like</span>
+<span class="n">admissions_data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[20]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admits</th>
+    </tr>
+    <tr>
+      <th>state</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Washington</th>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>Oregon</th>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>140</td>
+    </tr>
+    <tr>
+      <th>Nevada</th>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>Montana</th>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Analyzing-the-data">
+<h2>Analyzing the data<a class="headerlink" href="#Analyzing-the-data" title="Permalink to this heading"></a></h2>
+<p>Now let’s take a look at which states have the most admits by sorting the list by descending values.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># sort the values to see which states have the most admits</span>
+<span class="n">sorted_admits_data</span> <span class="o">=</span> <span class="n">admissions_data</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;admits&#39;</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># view the first 10 values of the sorted pandas dataframe</span>
+<span class="n">sorted_admits_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[26]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>admits</th>
+    </tr>
+    <tr>
+      <th>state</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>New Jersey</th>
+      <td>188</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>140</td>
+    </tr>
+    <tr>
+      <th>New York</th>
+      <td>133</td>
+    </tr>
+    <tr>
+      <th>Massachusetts</th>
+      <td>76</td>
+    </tr>
+    <tr>
+      <th>Pennsylvania</th>
+      <td>68</td>
+    </tr>
+    <tr>
+      <th>Texas</th>
+      <td>52</td>
+    </tr>
+    <tr>
+      <th>Florida</th>
+      <td>50</td>
+    </tr>
+    <tr>
+      <th>Connecticut</th>
+      <td>42</td>
+    </tr>
+    <tr>
+      <th>Maryland</th>
+      <td>41</td>
+    </tr>
+    <tr>
+      <th>Illinois</th>
+      <td>32</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>The table above shows that New Jersey, California, and New York have the most number of admits for the Princeton undergraduate class of 2025.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[46]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># see what percent of the total number of domestic admits come from these top three states</span>
+
+<span class="c1"># calculate the total number of admits from New Jersey, California, and New York</span>
+<span class="n">top_three_total_admits</span> <span class="o">=</span> <span class="n">sorted_admits_data</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">)[</span><span class="s1">&#39;admits&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total admits from top three states:&#39;</span><span class="p">,</span> <span class="n">top_three_total_admits</span><span class="p">,</span> <span class="s1">&#39;students&#39;</span><span class="p">)</span>
+
+<span class="c1"># calculate the total number of domestic admits</span>
+<span class="n">total_domestic_admits</span> <span class="o">=</span> <span class="n">sorted_admits_data</span><span class="p">[</span><span class="s1">&#39;admits&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Total domestic admits:&#39;</span><span class="p">,</span> <span class="n">total_domestic_admits</span><span class="p">,</span> <span class="s1">&#39;students&#39;</span><span class="p">)</span>
+
+<span class="c1"># calculate the percent of the total admits that these three states contribute</span>
+<span class="n">percent</span> <span class="o">=</span> <span class="p">(</span><span class="n">top_three_total_admits</span><span class="o">/</span><span class="n">total_domestic_admits</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{:.2%}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">percent</span><span class="p">),</span> <span class="s1">&#39;of domestic admits come from NJ, CA, and NY&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Total admits from top three states: 461 students
+Total domestic admits: 1145 students
+40.26% of domestic admits come from NJ, CA, and NY
+</pre></div></div>
+</div>
+<p>This is interesting! It turns out just <strong>three states</strong> comprise over 40% of the domestic undergraduate admits to Princeton University.</p>
+</section>
+<section id="Visualize-the-data-using-geostates">
+<h2>Visualize the data using geostates<a class="headerlink" href="#Visualize-the-data-using-geostates" title="Permalink to this heading"></a></h2>
+<p>The first step for using the <code class="docutils literal notranslate"><span class="pre">geostates</span></code> package is to load in the geodataframe containing all of the state values. For this, we will use the <code class="docutils literal notranslate"><span class="pre">load_states()</span></code> function and assign it to a value <code class="docutils literal notranslate"><span class="pre">df</span></code>. Once we’ve loaded in the geodataframe we need to merge it with out cattle data.</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[47]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the load_states() function from the geostates package</span>
+<span class="kn">from</span> <span class="nn">geostates.shapefiles</span> <span class="kn">import</span> <span class="n">load_states</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load in the geodataframe and assign it to df</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">load_states</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[48]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>NAME</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+      <th>geometry</th>
+    </tr>
+    <tr>
+      <th>STUSPS</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MS</th>
+      <td>28</td>
+      <td>01779790</td>
+      <td>0400000US28</td>
+      <td>28</td>
+      <td>Mississippi</td>
+      <td>00</td>
+      <td>121533519481</td>
+      <td>3926919758</td>
+      <td>MULTIPOLYGON (((-88.50297 30.21523, -88.49176 ...</td>
+    </tr>
+    <tr>
+      <th>NC</th>
+      <td>37</td>
+      <td>01027616</td>
+      <td>0400000US37</td>
+      <td>37</td>
+      <td>North Carolina</td>
+      <td>00</td>
+      <td>125923656064</td>
+      <td>13466071395</td>
+      <td>MULTIPOLYGON (((-75.72681 35.93584, -75.71827 ...</td>
+    </tr>
+    <tr>
+      <th>OK</th>
+      <td>40</td>
+      <td>01102857</td>
+      <td>0400000US40</td>
+      <td>40</td>
+      <td>Oklahoma</td>
+      <td>00</td>
+      <td>177662925723</td>
+      <td>3374587997</td>
+      <td>POLYGON ((-103.00257 36.52659, -103.00219 36.6...</td>
+    </tr>
+    <tr>
+      <th>VA</th>
+      <td>51</td>
+      <td>01779803</td>
+      <td>0400000US51</td>
+      <td>51</td>
+      <td>Virginia</td>
+      <td>00</td>
+      <td>102257717110</td>
+      <td>8528531774</td>
+      <td>MULTIPOLYGON (((-75.74241 37.80835, -75.74151 ...</td>
+    </tr>
+    <tr>
+      <th>WV</th>
+      <td>54</td>
+      <td>01779805</td>
+      <td>0400000US54</td>
+      <td>54</td>
+      <td>West Virginia</td>
+      <td>00</td>
+      <td>62266474513</td>
+      <td>489028543</td>
+      <td>POLYGON ((-82.64320 38.16909, -82.64300 38.169...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Merging-the-data">
+<h2>Merging the data<a class="headerlink" href="#Merging-the-data" title="Permalink to this heading"></a></h2>
+<p>In order to sucessfully create a choropleth map of the college admissions data, we need to merge it with the geodataframe that contains all the information for creating the plots of the states. We can do this by using the <code class="docutils literal notranslate"><span class="pre">pandas</span> <span class="pre">merge</span></code> function. Since the index for the college admissions data is <code class="docutils literal notranslate"><span class="pre">state</span></code> and our geodataframe contains a similar column (<code class="docutils literal notranslate"><span class="pre">NAME</span></code>) we can use this value to merge both dataframes. Let’s start out by renaming the <code class="docutils literal notranslate"><span class="pre">NAME</span></code> column in our geodataframe to <code class="docutils literal notranslate"><span class="pre">state</span></code> so
+that the names of both columns match.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># rename the &#39;NAME&#39; column in the geodataframe to &#39;State&#39;</span>
+<span class="n">geo_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;NAME&#39;</span><span class="p">:</span> <span class="s1">&#39;state&#39;</span><span class="p">})</span>
+<span class="n">geo_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[49]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>state</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+      <th>geometry</th>
+    </tr>
+    <tr>
+      <th>STUSPS</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>MS</th>
+      <td>28</td>
+      <td>01779790</td>
+      <td>0400000US28</td>
+      <td>28</td>
+      <td>Mississippi</td>
+      <td>00</td>
+      <td>121533519481</td>
+      <td>3926919758</td>
+      <td>MULTIPOLYGON (((-88.50297 30.21523, -88.49176 ...</td>
+    </tr>
+    <tr>
+      <th>NC</th>
+      <td>37</td>
+      <td>01027616</td>
+      <td>0400000US37</td>
+      <td>37</td>
+      <td>North Carolina</td>
+      <td>00</td>
+      <td>125923656064</td>
+      <td>13466071395</td>
+      <td>MULTIPOLYGON (((-75.72681 35.93584, -75.71827 ...</td>
+    </tr>
+    <tr>
+      <th>OK</th>
+      <td>40</td>
+      <td>01102857</td>
+      <td>0400000US40</td>
+      <td>40</td>
+      <td>Oklahoma</td>
+      <td>00</td>
+      <td>177662925723</td>
+      <td>3374587997</td>
+      <td>POLYGON ((-103.00257 36.52659, -103.00219 36.6...</td>
+    </tr>
+    <tr>
+      <th>VA</th>
+      <td>51</td>
+      <td>01779803</td>
+      <td>0400000US51</td>
+      <td>51</td>
+      <td>Virginia</td>
+      <td>00</td>
+      <td>102257717110</td>
+      <td>8528531774</td>
+      <td>MULTIPOLYGON (((-75.74241 37.80835, -75.74151 ...</td>
+    </tr>
+    <tr>
+      <th>WV</th>
+      <td>54</td>
+      <td>01779805</td>
+      <td>0400000US54</td>
+      <td>54</td>
+      <td>West Virginia</td>
+      <td>00</td>
+      <td>62266474513</td>
+      <td>489028543</td>
+      <td>POLYGON ((-82.64320 38.16909, -82.64300 38.169...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Important:</strong> To make sure that we do not accidentally loose any important data during the merge, we need to make sure that we include the <code class="docutils literal notranslate"><span class="pre">how='outer'</span></code> parameter in the merge statement.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">admissions_data</span><span class="p">,</span> <span class="n">geo_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s1">&#39;state&#39;</span><span class="p">,</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;outer&#39;</span><span class="p">)</span>
+<span class="n">data</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[55]:
+</pre></div>
+</div>
+<div class="output_area rendered_html docutils container">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>state</th>
+      <th>admits</th>
+      <th>STATEFP</th>
+      <th>STATENS</th>
+      <th>AFFGEOID</th>
+      <th>GEOID</th>
+      <th>LSAD</th>
+      <th>ALAND</th>
+      <th>AWATER</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Washington</td>
+      <td>17</td>
+      <td>53</td>
+      <td>01779804</td>
+      <td>0400000US53</td>
+      <td>53</td>
+      <td>00</td>
+      <td>172112588220</td>
+      <td>12559278850</td>
+      <td>MULTIPOLYGON (((-122.57039 48.53785, -122.5686...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Oregon</td>
+      <td>6</td>
+      <td>41</td>
+      <td>01155107</td>
+      <td>0400000US41</td>
+      <td>41</td>
+      <td>00</td>
+      <td>248606993270</td>
+      <td>6192386935</td>
+      <td>MULTIPOLYGON (((-123.59892 46.25145, -123.5984...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>California</td>
+      <td>140</td>
+      <td>06</td>
+      <td>01779778</td>
+      <td>0400000US06</td>
+      <td>06</td>
+      <td>00</td>
+      <td>403503931312</td>
+      <td>20463871877</td>
+      <td>MULTIPOLYGON (((-118.60442 33.47855, -118.5987...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Nevada</td>
+      <td>4</td>
+      <td>32</td>
+      <td>01779793</td>
+      <td>0400000US32</td>
+      <td>32</td>
+      <td>00</td>
+      <td>284329506470</td>
+      <td>2047206072</td>
+      <td>POLYGON ((-120.00574 39.22866, -120.00559 39.2...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Montana</td>
+      <td>1</td>
+      <td>30</td>
+      <td>00767982</td>
+      <td>0400000US30</td>
+      <td>30</td>
+      <td>00</td>
+      <td>376962738765</td>
+      <td>3869208832</td>
+      <td>POLYGON ((-116.04914 48.50205, -116.04913 48.5...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</section>
+<section id="Plotting-the-data">
+<h2>Plotting the data<a class="headerlink" href="#Plotting-the-data" title="Permalink to this heading"></a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[56]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># import the plot_states() function from geostates</span>
+<span class="kn">from</span> <span class="nn">geostates.plot</span> <span class="kn">import</span> <span class="n">plot_states</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[57]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a choropleth map that displays the admits for each state in the United States</span>
+<span class="c1"># plot = plot_states(data_2, column=&#39;admits&#39;, cmap=new_cmap, labels=&#39;both&#39;, linestyle=&#39;none&#39;, legend=&#39;legend&#39;,</span>
+                   <span class="c1">#bins=15)</span>
+
+<span class="c1"># add a title to the plot</span>
+<span class="c1"># plot.annotate(&#39;Princeton Admissions Data 2022&#39;, xy=(-97, 50.5), fontsize=18, ha=&#39;center&#39;);</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Cattle%20Data.html" class="btn btn-neutral float-left" title="Using the geostates package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../dev.html" class="btn btn-neutral float-right" title="Dev Roadmap" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Ethan Olesinski.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
